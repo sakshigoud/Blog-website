@@ -1,24 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import EditPost from './pages/Edit';
+import PostList from './components/Postlist';
+import CreatePost from './pages/CreateForm';
+import Details from './pages/Details';
+import HomePage from './pages/Homepage';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HomePage />
+      <Router>
+        <Routes>
+          <Route path="/posts/:id" element={<Details />} />
+          <Route path="/create" element={<CreatePost />} />
+          <Route path="/" element={<PostList />} />
+          <Route path="/edit/:id" element={<EditPost />} />
+        </Routes>
+      </Router>
+      {/* <CreatePost /> */}
+
     </div>
   );
 }
